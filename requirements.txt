@@ -1,6 +1,7 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==2.7.0+cpu
+torchvision==0.15.1+cpu
 streamlit
-torch
-torchvision
 numpy
 opencv-python
 Pillow
@@ -11,3 +12,4 @@ matplotlib
 pandas
 pytorch-msssim
 tqdm
+pickle
