@@ -12,7 +12,7 @@ import sys
 
 st.set_page_config(page_title="Horizon Detection", layout="wide")
 
-MODEL_PATH = "final_unet_horizon.pth"
+MODEL_PATH = "gdrive/final_unet_horizon_gdrive.pth"
 GDRIVE_FILE_ID = "1N0LGqvlwpgmOdky9aXwFUsOUSytBT8Oq"
 
 
@@ -25,7 +25,7 @@ st.title(sys.version)
 
 @st.cache_resource
 def load_model():
-    os.makedirs("t1", exist_ok=True)
+    os.makedirs("gdrive", exist_ok=True)
 
     if not os.path.exists(MODEL_PATH):
         st.info("Downloading model weights from Google Drive...")
