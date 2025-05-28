@@ -21,8 +21,6 @@ GDRIVE_FILE_ID = "1N0LGqvlwpgmOdky9aXwFUsOUSytBT8Oq"
 from model import UNet  # You must define your UNet class in model.py or inline
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-st.title(sys.version)
-
 @st.cache_resource
 def load_model():
     os.makedirs("gdrive", exist_ok=True)
@@ -33,7 +31,7 @@ def load_model():
         gdown.download(url, MODEL_PATH, quiet=False)
 
     model = UNet(in_channels=3, out_channels=1)
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+    model.load_state_dict(torch.load(MODEL_PATH, map_location='cpu'))
     model.to(device)
     model.eval()
     return model
