@@ -8,11 +8,12 @@ from albumentations.pytorch import ToTensorV2
 import albumentations as A
 import gdown 
 import os
+import sys
 
 st.set_page_config(page_title="Horizon Detection", layout="wide")
 
-MODEL_PATH = "t1/final_unet_horizon.pth"
-GDRIVE_FILE_ID = "1zj443HP_q6_xGCP9ORd20uI8c3SlOqwm"
+MODEL_PATH = "final_unet_horizon.pth"
+GDRIVE_FILE_ID = "1N0LGqvlwpgmOdky9aXwFUsOUSytBT8Oq"
 
 
 
@@ -20,13 +21,15 @@ GDRIVE_FILE_ID = "1zj443HP_q6_xGCP9ORd20uI8c3SlOqwm"
 from model import UNet  # You must define your UNet class in model.py or inline
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+st.title(sys.version)
+
 @st.cache_resource
 def load_model():
     os.makedirs("t1", exist_ok=True)
 
     if not os.path.exists(MODEL_PATH):
         st.info("Downloading model weights from Google Drive...")
-        url = "https://drive.google.com/file/d/1WTT8qUnndwkBLQ0gnYRnZRqkJW_jbNK8/view?usp=drive_link"
+        url = "https://drive.google.com/file/d/1N0LGqvlwpgmOdky9aXwFUsOUSytBT8Oq/view?usp=drive_link"
         gdown.download(url, MODEL_PATH, quiet=False)
 
     model = UNet(in_channels=3, out_channels=1)
