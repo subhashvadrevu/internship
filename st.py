@@ -161,6 +161,7 @@ if uploaded_images:
     for img_file in uploaded_images:
         try:
             img = Image.open(img_file)
+            img = img.resize((384, 288))
             input_tensor, img_np = preprocess_image(img)
             mask = predict_mask(input_tensor)
             binary_mask = (mask * 255).astype(np.uint8)
